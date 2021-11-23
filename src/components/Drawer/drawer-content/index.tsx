@@ -3,7 +3,8 @@ import { NavLink } from "react-router-dom";
 import Social from "./social";
 import StakeIcon from "../../../assets/icons/stake.svg";
 import BondIcon from "../../../assets/icons/bond.svg";
-import WonderlandIcon from "../../../assets/icons/wonderland-nav-header.svg";
+// import WonderlandIcon from "../../../assets/icons/wonderland-nav-header.svg";
+import Logo from "../../../assets/icons/logo-dark.svg";
 import DashboardIcon from "../../../assets/icons/dashboard.svg";
 import { trim, shorten } from "../../../helpers";
 import { useAddress } from "../../../hooks";
@@ -38,7 +39,7 @@ function NavContent() {
         <div className="dapp-sidebar">
             <div className="branding-header">
                 <Link href="https://wonderland.money" target="_blank">
-                    <img alt="" src={WonderlandIcon} />
+                    <img alt="" src={Logo} />
                 </Link>
 
                 {address && (
@@ -111,15 +112,6 @@ function NavContent() {
                         ))}
                     </div>
                 </div>
-            </div>
-            <div className="dapp-menu-doc-link">
-                <Link href="https://wonderland.gitbook.io/wonderland/" target="_blank">
-                    <img alt="" src={DocsIcon} />
-                    <p>Docs</p>
-                </Link>
-                <Link href="https://legacy.wonderland.money/" target="_blank">
-                    <p>Legacy website</p>
-                </Link>
             </div>
             <Social />
         </div>

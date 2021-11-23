@@ -7,6 +7,7 @@ import MobileDrawer from "../Drawer/mobile-drawer";
 import Drawer from "../Drawer";
 import { cubesImage } from "src/constants/img";
 import Messages from "../Messages";
+import Background from "../Background";
 
 interface IViewBaseProps {
     children: React.ReactNode;
@@ -63,7 +64,7 @@ function ViewBase({ children }: IViewBaseProps) {
                 </Hidden>
             </div>
             <div className={`${classes.content} ${isSmallerScreen && classes.contentShift}`}>
-                {!isSmallerScreen && (
+                {/* {!isSmallerScreen && (
                     <div className="cubes-top">
                         <p>{cubesImage}</p>
                     </div>
@@ -72,8 +73,10 @@ function ViewBase({ children }: IViewBaseProps) {
                     <div className="cubes-bottom">
                         <p>{cubesImage}</p>
                     </div>
-                )}
+                )} */}
+
                 {children}
+                <Background drawMountains="true" shouldRain="true" useFallBackLightning="true" />
             </div>
         </div>
     );

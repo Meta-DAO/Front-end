@@ -10,6 +10,6 @@ export interface BondAddresses {
     bondAddress: string;
 }
 
-export interface NetworkAddresses {
-    [Networks.AVAX]: BondAddresses;
-}
+export type NetworkAddresses = {
+    [key in [4002, 250] as number]: BondAddresses;
+};
