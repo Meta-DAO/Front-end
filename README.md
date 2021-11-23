@@ -1,4 +1,4 @@
-# [MetaDAO Frontend](https://app.metadao.financey/)
+# [MetaDAO Frontend](http://metadao.financial/)
 
 This is the front-end repo for MetaDao.
 
