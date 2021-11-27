@@ -10,8 +10,8 @@ function Landing() {
         <div className="landing-root">
             <Header />
             <Main />
-            <Footer />
-            <Background />
+            {/* <Footer /> */}
+            <Background useFallBackLightning="true" />
         </div>
     );
 }

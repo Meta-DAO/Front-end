@@ -125,7 +125,7 @@ function Background({ drawMountains = "true", shouldRain = "true", useFallBackLi
             rain(c5, c5?.getContext("2d"), rand(-7, 7), rand(30, 60));
         }
 
-        if (!useFallBackLightning) {
+        if (useFallBackLightning != "true") {
             let numLightningCanvases = miniMode ? 1 : 2;
             for (let i = 0; i < numLightningCanvases; i++) {
                 let c = canvii[i];
@@ -515,7 +515,7 @@ function Background({ drawMountains = "true", shouldRain = "true", useFallBackLi
         <div className="landing-background">
             {/* Moon */}
             <canvas id="c6"></canvas>
-            {useFallBackLightning && <div id="fallback-lightning">asd</div>}
+            {useFallBackLightning == "true" && <div id="fallback-lightning"></div>}
             {/* Lightning */}
             <canvas id="c1"></canvas>
             {/* Lightning */}

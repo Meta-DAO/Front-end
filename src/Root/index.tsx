@@ -25,7 +25,8 @@ function Root() {
     );
 
     // return isApp() ? app() : <Landing />;
-    return app();
+    // return app();
+    return <Landing />;
 }
 
 export default Root;
