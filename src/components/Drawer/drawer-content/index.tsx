@@ -38,13 +38,13 @@ function NavContent() {
     return (
         <div className="dapp-sidebar">
             <div className="branding-header">
-                <Link href="https://wonderland.money" target="_blank">
+                <Link href="https://metadao.financial/" target="_blank">
                     <img alt="" src={Logo} />
                 </Link>
 
                 {address && (
                     <div className="wallet-link">
-                        <Link href={`https://cchain.explorer.avax.network/address/${address}`} target="_blank">
+                        <Link href={`https://${process.env.REACT_APP_NETWORK === "testnet" ? "testnet." : ""}ftmscan.com/address${address}`} target="_blank">
                             <p>{shorten(address)}</p>
                         </Link>
                     </div>
