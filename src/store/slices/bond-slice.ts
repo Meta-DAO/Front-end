@@ -10,7 +10,7 @@ import { Bond } from "../../helpers/bond/bond";
 import { Networks } from "../../constants/blockchain";
 import { getBondCalculator } from "../../helpers/bond-calculator";
 import { RootState } from "../store";
-import { avaxTime, wavax } from "../../helpers/bond";
+// import { wavax } from "../../helpers/bond";
 import { error, warning, success, info } from "../slices/messages-slice";
 import { messages } from "../../constants/messages";
 import { getGasPrice } from "../../helpers/get-gas-price";
@@ -30,8 +30,11 @@ export const changeApproval = createAsyncThunk("bonding/changeApproval", async (
         return;
     }
 
+    console.log("Before getting reserveContract");
     const signer = provider.getSigner();
+
     const reserveContract = bond.getContractForReserve(networkID, signer);
+    console.log("Reserve Contract: ", reserveContract);
 
     let approveTx;
     try {
@@ -109,7 +112,10 @@ export const calcBondDetails = createAsyncThunk("bonding/calcBondDetails", async
     const bondCalcContract = getBondCalculator(networkID, provider);
 
     const terms = await bondContract.terms();
+    console.log("Bond Address: ", bondContract.address);
+    console.log("Terms: ", terms);
     const maxBondPrice = (await bondContract.maxPayout()) / Math.pow(10, 9);
+    console.log("MaxBOndPrice: ", maxBondPrice);
 
     let marketPrice = await getMarketPrice(networkID, provider);
 
@@ -119,10 +125,10 @@ export const calcBondDetails = createAsyncThunk("bonding/calcBondDetails", async
     try {
         bondPrice = await bondContract.bondPriceInUSD();
 
-        if (bond.name === avaxTime.name) {
-            const avaxPrice = getTokenPrice("AVAX");
-            bondPrice = bondPrice * avaxPrice;
-        }
+        // if (bond.name === avaxTime.name) {
+        //     const avaxPrice = getTokenPrice("AVAX");
+        //     bondPrice = bondPrice * avaxPrice;
+        // }
 
         bondDiscount = (marketPrice * Math.pow(10, 18) - bondPrice) / bondPrice;
     } catch (e) {
@@ -134,6 +140,7 @@ export const calcBondDetails = createAsyncThunk("bonding/calcBondDetails", async
 
     if (bond.isLP) {
         valuation = await bondCalcContract.valuation(bond.getAddressForReserve(networkID), amountInWei);
+        console.log("Valuation: ", valuation);
         bondQuote = await bondContract.payoutFor(valuation);
         bondQuote = bondQuote / Math.pow(10, 9);
 
@@ -163,14 +170,15 @@ export const calcBondDetails = createAsyncThunk("bonding/calcBondDetails", async
         purchased = await bondCalcContract.valuation(assetAddress, purchased);
         purchased = (markdown / Math.pow(10, 18)) * (purchased / Math.pow(10, 9));
 
-        if (bond.name === avaxTime.name) {
-            const avaxPrice = getTokenPrice("AVAX");
-            purchased = purchased * avaxPrice;
-        }
-    } else if (bond.name === wavax.name) {
-        purchased = purchased / Math.pow(10, 18);
-        const avaxPrice = getTokenPrice("AVAX");
-        purchased = purchased * avaxPrice;
+        // if (bond.name === avaxTime.name) {
+        //     const avaxPrice = getTokenPrice("AVAX");
+        //     purchased = purchased * avaxPrice;
+        // }
+        // } else if (bond.name === wavax.name) {
+        //     purchased = purchased / Math.pow(10, 18);
+        //     const avaxPrice = getTokenPrice("AVAX");
+        //     purchased = purchased * avaxPrice;
+        // } else {
     } else {
         purchased = purchased / Math.pow(10, 18);
     }
@@ -322,7 +330,7 @@ const bondingSlice = createSlice({
             })
             .addCase(calcBondDetails.rejected, (state, { error }) => {
                 state.loading = false;
-                console.log(error);
+                console.trace(error);
             });
     },
 });

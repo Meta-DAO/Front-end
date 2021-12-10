@@ -19,35 +19,35 @@ export const mim = new StableBond({
     networkAddrs: {
         // TODO: add these
         [Networks.MAIN_NET]: {
-            bondAddress: "0x694738E0A438d90487b4a549b201142c1a97B556",
-            reserveAddress: "0x130966628846BFd36ff31a822705796e8cb8C18D",
+            bondAddress: "0x00FE77De7cA0F70e88Cd635217fFb537DBa553d5",
+            reserveAddress: "0xb697821E2A14C5BCFCdAFf8E4C54bA9A4601Ae71",
         },
         [Networks.TEST_NET]: {
-            bondAddress: "0x694738E0A438d90487b4a549b201142c1a97B556",
-            reserveAddress: "0x130966628846BFd36ff31a822705796e8cb8C18D",
+            bondAddress: "0x00FE77De7cA0F70e88Cd635217fFb537DBa553d5",
+            reserveAddress: "0xb697821E2A14C5BCFCdAFf8E4C54bA9A4601Ae71",
         },
     },
 });
 
-export const wavax = new CustomBond({
-    name: "wavax",
-    displayName: "wAVAX",
-    bondToken: "AVAX",
-    bondIconSvg: AvaxIcon,
-    bondContractABI: WavaxBondContract,
-    reserveContractAbi: StableReserveContract,
-    networkAddrs: {
-        // TODO: add these
-        [Networks.MAIN_NET]: {
-            bondAddress: "0xE02B1AA2c4BE73093BE79d763fdFFC0E3cf67318",
-            reserveAddress: "0xb31f66aa3c1e785363f0875a1b74e27b85fd66c7",
-        },
-        [Networks.TEST_NET]: {
-            bondAddress: "0xE02B1AA2c4BE73093BE79d763fdFFC0E3cf67318",
-            reserveAddress: "0xb31f66aa3c1e785363f0875a1b74e27b85fd66c7",
-        },
-    },
-});
+// export const wavax = new CustomBond({
+//     name: "wavax",
+//     displayName: "wAVAX",
+//     bondToken: "AVAX",
+//     bondIconSvg: AvaxIcon,
+//     bondContractABI: WavaxBondContract,
+//     reserveContractAbi: StableReserveContract,
+//     networkAddrs: {
+//         // TODO: add these
+//         [Networks.MAIN_NET]: {
+//             bondAddress: "0xE02B1AA2c4BE73093BE79d763fdFFC0E3cf67318",
+//             reserveAddress: "0xb31f66aa3c1e785363f0875a1b74e27b85fd66c7",
+//         },
+//         [Networks.TEST_NET]: {
+//             bondAddress: "0xE02B1AA2c4BE73093BE79d763fdFFC0E3cf67318",
+//             reserveAddress: "0xb31f66aa3c1e785363f0875a1b74e27b85fd66c7",
+//         },
+//     },
+// });
 
 export const mimTime = new LPBond({
     name: "mim_time_lp",
@@ -70,24 +70,24 @@ export const mimTime = new LPBond({
     lpUrl: "https://www.traderjoexyz.com/#/pool/0x130966628846BFd36ff31a822705796e8cb8C18D/0xb54f16fB19478766A268F172C9480f8da1a7c9C3",
 });
 
-export const avaxTime = new CustomLPBond({
-    name: "avax_time_lp",
-    displayName: "TIME-AVAX LP",
-    bondToken: "AVAX",
-    bondIconSvg: AvaxTimeIcon,
-    bondContractABI: LpBondContract,
-    reserveContractAbi: LpReserveContract,
-    networkAddrs: {
-        [Networks.MAIN_NET]: {
-            bondAddress: "0xc26850686ce755FFb8690EA156E5A6cf03DcBDE1",
-            reserveAddress: "0xf64e1c5B6E17031f5504481Ac8145F4c3eab4917",
-        },
-        [Networks.TEST_NET]: {
-            bondAddress: "0xc26850686ce755FFb8690EA156E5A6cf03DcBDE1",
-            reserveAddress: "0xf64e1c5B6E17031f5504481Ac8145F4c3eab4917",
-        },
-    },
-    lpUrl: "https://www.traderjoexyz.com/#/pool/AVAX/0xb54f16fB19478766A268F172C9480f8da1a7c9C3",
-});
+// export const avaxTime = new CustomLPBond({
+//     name: "avax_time_lp",
+//     displayName: "TIME-AVAX LP",
+//     bondToken: "AVAX",
+//     bondIconSvg: AvaxTimeIcon,
+//     bondContractABI: LpBondContract,
+//     reserveContractAbi: LpReserveContract,
+//     networkAddrs: {
+//         [Networks.MAIN_NET]: {
+//             bondAddress: "0xc26850686ce755FFb8690EA156E5A6cf03DcBDE1",
+//             reserveAddress: "0xf64e1c5B6E17031f5504481Ac8145F4c3eab4917",
+//         },
+//         [Networks.TEST_NET]: {
+//             bondAddress: "0xc26850686ce755FFb8690EA156E5A6cf03DcBDE1",
+//             reserveAddress: "0xf64e1c5B6E17031f5504481Ac8145F4c3eab4917",
+//         },
+//     },
+//     lpUrl: "https://www.traderjoexyz.com/#/pool/AVAX/0xb54f16fB19478766A268F172C9480f8da1a7c9C3",
+// });
 
-export default [mim, wavax, mimTime, avaxTime];
+export default [mim, mimTime];
