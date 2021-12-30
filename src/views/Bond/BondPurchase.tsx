@@ -140,8 +140,8 @@ function BondPurchase({ bond, slippage }: IBondPurchaseProps) {
   };
 
   const balanceUnits = () => {
-    if (bond.indexOf("_lp") >= 0) return "LP";
-    else if (bond === BONDS.wavax) return useAvax ? "AVAX" : "wAVAX";
+    // if (bond.indexOf("_lp") >= 0) return "LP";
+    // else if (bond === BONDS.wavax) return useAvax ? "AVAX" : "wAVAX";
     return "MIM";
   };
 
@@ -163,14 +163,14 @@ function BondPurchase({ bond, slippage }: IBondPurchaseProps) {
   return (
     <Box display="flex" flexDirection="column">
       <Box display="flex" justifyContent="space-around" flexWrap="wrap">
-        {bond === BONDS.wavax && (
+        {/* {bond === BONDS.wavax && (
           <FormControl className="ohm-input" variant="outlined" color="primary" fullWidth>
             <div className="avax-checkbox">
               <input type="checkbox" checked={useAvax} onClick={() => setUseAvax(!useAvax)} />
               <p>Use AVAX</p>
             </div>
           </FormControl>
-        )}
+        )} */}
         <FormControl className="ohm-input" variant="outlined" color="primary" fullWidth>
           <InputLabel htmlFor="outlined-adornment-amount"></InputLabel>
           <OutlinedInput

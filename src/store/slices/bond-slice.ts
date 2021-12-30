@@ -127,30 +127,30 @@ export const calcBondDetails = createAsyncThunk(
     try {
       bondPrice = await bondContract.bondPriceInUSD();
 
-      if (bond === BONDS.avax_time) {
-        const avaxPrice = getTokenPrice("AVAX");
-        bondPrice = bondPrice * avaxPrice;
-      }
+      // if (bond === BONDS.avax_time) {
+      //   const avaxPrice = getTokenPrice("AVAX");
+      //   bondPrice = bondPrice * avaxPrice;
+      // }
 
       bondDiscount = (marketPrice * Math.pow(10, 18) - bondPrice) / bondPrice;
     } catch (e) {
       console.log("error getting bondPriceInUSD", e);
     }
 
-    if (bond === BONDS.mim_time) {
-      valuation = await bondCalcContract.valuation(addresses.RESERVES.MIM_TIME, amountInWei);
-      bondQuote = await bondContract.payoutFor(valuation);
-      bondQuote = bondQuote / Math.pow(10, 9);
-    } else {
-      if (bond === BONDS.avax_time) {
-        valuation = await bondCalcContract.valuation(addresses.RESERVES.AVAX_TIME, amountInWei);
-        bondQuote = await bondContract.payoutFor(valuation);
-        bondQuote = bondQuote / Math.pow(10, 9);
-      } else {
-        bondQuote = await bondContract.payoutFor(amountInWei);
-        bondQuote = bondQuote / Math.pow(10, 18);
-      }
-    }
+    // if (bond === BONDS.mim_time) {
+    //   valuation = await bondCalcContract.valuation(addresses.RESERVES.MIM_TIME, amountInWei);
+    //   bondQuote = await bondContract.payoutFor(valuation);
+    //   bondQuote = bondQuote / Math.pow(10, 9);
+    // } else {
+    //   if (bond === BONDS.avax_time) {
+    //     valuation = await bondCalcContract.valuation(addresses.RESERVES.AVAX_TIME, amountInWei);
+    //     bondQuote = await bondContract.payoutFor(valuation);
+    //     bondQuote = bondQuote / Math.pow(10, 9);
+    //   } else {
+    bondQuote = await bondContract.payoutFor(amountInWei);
+    bondQuote = bondQuote / Math.pow(10, 18);
+    //   }
+    // }
 
     // Display error if user tries to exceed maximum.
     if (!!value && bondQuote > maxBondPrice / Math.pow(10, 9)) {
@@ -165,22 +165,22 @@ export const calcBondDetails = createAsyncThunk(
     const token = contractForReserve(bond, networkID, provider);
     let purchased = await token.balanceOf(addresses.TREASURY_ADDRESS);
 
-    if (isBondLP(bond)) {
-      const markdown = await bondCalcContract.markdown(addressForAsset(bond, networkID));
-      purchased = await bondCalcContract.valuation(addressForAsset(bond, networkID), purchased);
-      purchased = (markdown / Math.pow(10, 18)) * (purchased / Math.pow(10, 9));
+    // if (isBondLP(bond)) {
+    //   const markdown = await bondCalcContract.markdown(addressForAsset(bond, networkID));
+    //   purchased = await bondCalcContract.valuation(addressForAsset(bond, networkID), purchased);
+    //   purchased = (markdown / Math.pow(10, 18)) * (purchased / Math.pow(10, 9));
 
-      if (bond.indexOf("avax") >= 0) {
-        const avaxPrice = getTokenPrice("AVAX");
-        purchased = purchased * avaxPrice;
-      }
-    } else if (bond === BONDS.wavax) {
-      purchased = purchased / Math.pow(10, 18);
-      const avaxPrice = getTokenPrice("AVAX");
-      purchased = purchased * avaxPrice;
-    } else {
-      purchased = purchased / Math.pow(10, 18);
-    }
+    //   if (bond.indexOf("avax") >= 0) {
+    //     const avaxPrice = getTokenPrice("AVAX");
+    //     purchased = purchased * avaxPrice;
+    //   }
+    // } else if (bond === BONDS.wavax) {
+    //   purchased = purchased / Math.pow(10, 18);
+    //   const avaxPrice = getTokenPrice("AVAX");
+    //   purchased = purchased * avaxPrice;
+    // } else {
+    purchased = purchased / Math.pow(10, 18);
+    // }
 
     return {
       bond,
