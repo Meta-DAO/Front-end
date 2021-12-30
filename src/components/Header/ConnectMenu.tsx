@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Box, Button, Typography, Popper, Paper, Divider, Link } from "@material-ui/core";
 import { useWeb3Context } from "../../hooks";
-import { Networks, DEFAULD_NETWORK } from "../../constants";
+import { Networks, DEFAULT_NETWORK } from "../../constants";
 import { IReduxState } from "../../store/slices/state.interface";
 import { IPendingTxn } from "../../store/slices/pending-txns-slice";
 import { ClickAwayListener } from "@material-ui/core";
@@ -34,7 +34,7 @@ function ConnectMenu() {
     clickFunc = handleClick;
   }
 
-  if (isConnected && providerChainID !== DEFAULD_NETWORK) {
+  if (isConnected && providerChainID !== DEFAULT_NETWORK) {
     buttonText = "Wrong network";
     buttonStyle = { backgroundColor: "rgb(255, 67, 67)" };
     clickFunc = () => {

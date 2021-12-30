@@ -3,7 +3,7 @@ import Web3Modal from "web3modal";
 import { StaticJsonRpcProvider, JsonRpcProvider, Web3Provider } from "@ethersproject/providers";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import { getTestnetURI, getMainnetURI } from "./helpers";
-import { DEFAULD_NETWORK } from "../../constants";
+import { DEFAULT_NETWORK } from "../../constants";
 import { Networks } from "../../constants";
 
 type onChainProvider = {
@@ -46,8 +46,8 @@ export const useAddress = () => {
 
 export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ children }) => {
   const [connected, setConnected] = useState(false);
-  const [chainID, setChainID] = useState(DEFAULD_NETWORK);
-  const [providerChainID, setProviderChainID] = useState(DEFAULD_NETWORK);
+  const [chainID, setChainID] = useState(DEFAULT_NETWORK);
+  const [providerChainID, setProviderChainID] = useState(DEFAULT_NETWORK);
   const [address, setAddress] = useState("");
 
   const [uri, setUri] = useState(chainID === Networks.AVAX ? getMainnetURI() : getTestnetURI());
@@ -135,7 +135,7 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
   }, [provider, web3Modal, connected]);
 
   const checkWrongNetwork = (): boolean => {
-    if (providerChainID !== DEFAULD_NETWORK) {
+    if (providerChainID !== DEFAULT_NETWORK) {
       alert("Please connect your wallet to Avalanche network to use Wonderland!");
       return true;
     }
