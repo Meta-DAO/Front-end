@@ -15,21 +15,21 @@ export const makeBondsArray = (
       value: "mim",
       discount: Number(mimBondDiscount),
     },
-    {
-      name: "TIME-AVAX LP",
-      value: "avax_time_lp",
-      discount: Number(avaxTimeBondDiscount),
-    },
-    {
-      name: "TIME-MIM LP",
-      value: "mim_time_lp",
-      discount: Number(mimTimeBondDiscount),
-    },
-    {
-      name: "wAVAX",
-      value: "wavax",
-      discount: Number(wavaxBondDiscount),
-    },
+    // {
+    //   name: "TIME-AVAX LP",
+    //   value: "avax_time_lp",
+    //   discount: Number(avaxTimeBondDiscount),
+    // },
+    // {
+    //   name: "TIME-MIM LP",
+    //   value: "mim_time_lp",
+    //   discount: Number(mimTimeBondDiscount),
+    // },
+    // {
+    //   name: "wAVAX",
+    //   value: "wavax",
+    //   discount: Number(wavaxBondDiscount),
+    // },
   ];
 };
 

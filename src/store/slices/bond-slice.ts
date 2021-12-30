@@ -52,15 +52,6 @@ export const changeApproval = createAsyncThunk(
       if (bond === BONDS.mim) {
         approveTx = await reserveContract.approve(addresses.BONDS.MIM, constants.MaxUint256);
       }
-      if (bond === BONDS.mim_time) {
-        approveTx = await reserveContract.approve(addresses.BONDS.MIM_TIME, constants.MaxUint256);
-      }
-      if (bond === BONDS.avax_time) {
-        approveTx = await reserveContract.approve(addresses.BONDS.AVAX_TIME, constants.MaxUint256);
-      }
-      if (bond === BONDS.wavax) {
-        approveTx = await reserveContract.approve(addresses.BONDS.WAVAX, constants.MaxUint256);
-      }
       dispatch(
         fetchPendingTxns({ txnHash: approveTx.hash, text: "Approving " + bondName(bond), type: "approve_" + bond }),
       );
@@ -78,24 +69,6 @@ export const changeApproval = createAsyncThunk(
 
     if (bond === BONDS.mim) {
       allowance = await reserveContract.allowance(address, addresses.BONDS.MIM);
-      balance = await reserveContract.balanceOf(address);
-      balance = ethers.utils.formatEther(balance);
-    }
-
-    if (bond === BONDS.mim_time) {
-      allowance = await reserveContract.allowance(address, addresses.BONDS.MIM_TIME);
-      balance = await reserveContract.balanceOf(address);
-      balance = ethers.utils.formatUnits(balance, "ether");
-    }
-
-    if (bond === BONDS.avax_time) {
-      allowance = await reserveContract.allowance(address, addresses.BONDS.AVAX_TIME);
-      balance = await reserveContract.balanceOf(address);
-      balance = ethers.utils.formatUnits(balance, "ether");
-    }
-
-    if (bond === BONDS.wavax) {
-      allowance = await reserveContract.allowance(address, addresses.BONDS.WAVAX);
       balance = await reserveContract.balanceOf(address);
       balance = ethers.utils.formatEther(balance);
     }

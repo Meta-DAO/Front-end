@@ -40,13 +40,12 @@ export const loadAppDetails = createAsyncThunk(
   //@ts-ignore
   async ({ networkID, provider }: ILoadAppDetails) => {
     const mimPrice = getTokenPrice("MIM");
-    const avaxPrice = getTokenPrice("AVAX");
     const addresses = getAddresses(networkID);
     const stakingContract = new ethers.Contract(addresses.STAKING_ADDRESS, StakingContract, provider);
     const currentBlock = await provider.getBlockNumber();
     const currentBlockTime = (await provider.getBlock(currentBlock)).timestamp;
     const memoContract = new ethers.Contract(addresses.MEMO_ADDRESS, MemoTokenContract, provider);
-    const bondCalculator = new ethers.Contract(addresses.TIME_BONDING_CALC_ADDRESS, BondingCalcContract, provider);
+    // const bondCalculator = new ethers.Contract(addresses.TIME_BONDING_CALC_ADDRESS, BondingCalcContract, provider);
     const timeContract = new ethers.Contract(addresses.TIME_ADDRESS, TimeTokenContract, provider);
 
     const marketPrice = await getMarketPrice(networkID, provider);
@@ -61,40 +60,21 @@ export const loadAppDetails = createAsyncThunk(
     const mimAmount = (await token.balanceOf(addresses.TREASURY_ADDRESS)) / Math.pow(10, 18);
 
     //MIM-TIME LP
-    token = contractForReserve(BONDS.mim_time, networkID, provider);
-    let mimTimeAmount = await token.balanceOf(addresses.TREASURY_ADDRESS);
-    let valuation = await bondCalculator.valuation(addressForAsset(BONDS.mim_time, networkID), mimTimeAmount);
-    let markdown = await bondCalculator.markdown(addressForAsset(BONDS.mim_time, networkID));
-    let mimTimeUSD = (valuation / Math.pow(10, 9)) * (markdown / Math.pow(10, 18));
-    const mimTimeReserves = await token.getReserves(); // 0 - mim , 1 - time
-
-    //AVAX-TIME LP
-    token = contractForReserve(BONDS.avax_time, networkID, provider);
-    const avaxTimeAmount = await token.balanceOf(addresses.TREASURY_ADDRESS);
-    valuation = await bondCalculator.valuation(addressForAsset(BONDS.avax_time, networkID), avaxTimeAmount);
-    markdown = await bondCalculator.markdown(addressForAsset(BONDS.avax_time, networkID));
-    let avaxTimeUSD = (valuation / Math.pow(10, 9)) * (markdown / Math.pow(10, 18));
-    const avaxTimeReserves = await token.getReserves(); // 0 - wavax, 1 - time
+    // token = contractForReserve(BONDS.mim_time, networkID, provider);
+    // let mimTimeAmount = await token.balanceOf(addresses.TREASURY_ADDRESS);
+    // let valuation = await bondCalculator.valuation(addressForAsset(BONDS.mim_time, networkID), mimTimeAmount);
+    // let markdown = await bondCalculator.markdown(addressForAsset(BONDS.mim_time, networkID));
+    // let mimTimeUSD = (valuation / Math.pow(10, 9)) * (markdown / Math.pow(10, 18));
+    // const mimTimeReserves = await token.getReserves(); // 0 - mim , 1 - time
 
     //wAVAX
-    token = contractForReserve(BONDS.wavax, networkID, provider);
-    const wAvaxAmount = (await token.balanceOf(addresses.TREASURY_ADDRESS)) / Math.pow(10, 18);
+    // token = contractForReserve(BONDS.wavax, networkID, provider);
 
-    const ohmPrice = getTokenPrice("OHM");
-    const ohmAmount = 1512.12854088 * ohmPrice;
-    const treasuryBalance =
-      mimAmount + mimTimeUSD + avaxTimeUSD * avaxPrice + wAvaxAmount * avaxPrice + 397460.62 + ohmAmount;
+    const treasuryBalance = mimAmount;
 
-    const rrfTreasuryBalance =
-      mimAmount +
-      mimTimeReserves[0].toString() / Math.pow(10, 18) +
-      (avaxTimeReserves[0].toString() / Math.pow(10, 18)) * avaxPrice +
-      wAvaxAmount * avaxPrice +
-      397460.62 +
-      ohmAmount;
+    const rrfTreasuryBalance = mimAmount;
 
-    const timeSupply =
-      totalSupply - mimTimeReserves[1].toString() / Math.pow(10, 9) - avaxTimeReserves[1].toString() / Math.pow(10, 9);
+    const timeSupply = totalSupply;
 
     const rfv = rrfTreasuryBalance / timeSupply;
 

@@ -131,23 +131,11 @@ export const calculateUserBondDetails = createAsyncThunk(
       balance = ethers.utils.formatEther(balance);
     }
 
-    if (bond === BONDS.mim_time) {
-      allowance = await reserveContract.allowance(address, addresses.BONDS.MIM_TIME);
-      balance = await reserveContract.balanceOf(address);
-      balance = ethers.utils.formatUnits(balance, "ether");
-    }
-
-    if (bond === BONDS.avax_time) {
-      allowance = await reserveContract.allowance(address, addresses.BONDS.AVAX_TIME);
-      balance = await reserveContract.balanceOf(address);
-      balance = ethers.utils.formatUnits(balance, "ether");
-    }
-
-    if (bond === BONDS.wavax) {
-      allowance = await reserveContract.allowance(address, addresses.BONDS.WAVAX);
-      balance = await reserveContract.balanceOf(address);
-      balance = ethers.utils.formatEther(balance);
-    }
+    // if (bond === BONDS.mim_time) {
+    //   allowance = await reserveContract.allowance(address, addresses.BONDS.MIM_TIME);
+    //   balance = await reserveContract.balanceOf(address);
+    //   balance = ethers.utils.formatUnits(balance, "ether");
+    // }
 
     const avaxBalance = await provider.getSigner().getBalance();
 
