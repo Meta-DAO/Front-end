@@ -15,5 +15,5 @@ export async function getMarketPrice(
 
   // return marketPrice;
   // return 2812906732797.8726;
-  return 1;
+  return 20;
 }
