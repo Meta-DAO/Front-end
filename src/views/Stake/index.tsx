@@ -298,7 +298,11 @@ function Stake() {
                     <div className="data-row">
                       <p className="data-row-name">Next Reward Amount</p>
                       <p className="data-row-value">
-                        {isAppLoading ? <Skeleton width="80px" /> : <>{nextRewardValue} MEMO</>}
+                        {isAppLoading ? (
+                          <Skeleton width="80px" />
+                        ) : (
+                          <>{nextRewardValue == "NaN" ? 0 : nextRewardValue} MEMO</>
+                        )}
                       </p>
                     </div>
 

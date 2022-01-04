@@ -80,6 +80,7 @@ export const changeStake = createAsyncThunk(
       alert("Please connect your wallet!");
       return;
     }
+
     const addresses = getAddresses(networkID);
     const signer = provider.getSigner();
     const staking = new ethers.Contract(addresses.STAKING_ADDRESS, StakingContract, signer);
@@ -89,6 +90,7 @@ export const changeStake = createAsyncThunk(
 
     try {
       if (action === "stake") {
+        console.log("ABout to stake");
         stakeTx = await stakingHelper.stake(ethers.utils.parseUnits(value, "gwei"), address);
       } else {
         stakeTx = await staking.unstake(ethers.utils.parseUnits(value, "gwei"), true);

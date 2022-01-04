@@ -5,7 +5,8 @@ export enum Networks {
   UNKNOW = 0,
   MAINNET = 1,
   RINKEBY = 4,
-  AVAX = 43114,
+  // AVAX = 43114,
+  AVAX = 4002,
 }
 
 export const DEFAULT_NETWORK = Networks.AVAX;
