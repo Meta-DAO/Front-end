@@ -1,5 +1,5 @@
-import TimeMimSvg from "../assets/tokens/TIME-MIM.svg";
-import TimeAvaxSvg from "../assets/tokens/TIME-AVAX.svg";
+import TimeMimSvg from "../assets/tokens/META-MIM.svg";
+import TimeAvaxSvg from "../assets/tokens/META-AVAX.svg";
 import { BONDS } from "../constants";
 import { Icon } from "@material-ui/core";
 

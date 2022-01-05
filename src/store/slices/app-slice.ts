@@ -59,7 +59,7 @@ export const loadAppDetails = createAsyncThunk(
     let token = contractForReserve(BONDS.mim, networkID, provider);
     const mimAmount = (await token.balanceOf(addresses.TREASURY_ADDRESS)) / Math.pow(10, 18);
 
-    //MIM-TIME LP
+    //MIM-META LP
     // token = contractForReserve(BONDS.mim_time, networkID, provider);
     // let mimTimeAmount = await token.balanceOf(addresses.TREASURY_ADDRESS);
     // let valuation = await bondCalculator.valuation(addressForAsset(BONDS.mim_time, networkID), mimTimeAmount);

@@ -16,12 +16,12 @@ export const makeBondsArray = (
       discount: Number(mimBondDiscount),
     },
     // {
-    //   name: "TIME-AVAX LP",
+    //   name: "META-AVAX LP",
     //   value: "avax_time_lp",
     //   discount: Number(avaxTimeBondDiscount),
     // },
     // {
-    //   name: "TIME-MIM LP",
+    //   name: "META-MIM LP",
     //   value: "mim_time_lp",
     //   discount: Number(mimTimeBondDiscount),
     // },

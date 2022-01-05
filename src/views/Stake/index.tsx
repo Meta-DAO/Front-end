@@ -121,7 +121,7 @@ function Stake() {
             <Grid item>
               <div className="card-header">
                 <p className="single-stake-title">
-                  TIME Staking ({String.fromCodePoint(0x1f3a9)}, {String.fromCodePoint(0x1f3a9)})
+                  META Staking ({String.fromCodePoint(0x1f3a9)}, {String.fromCodePoint(0x1f3a9)})
                 </p>
                 <RebaseTimer />
               </div>
@@ -165,7 +165,7 @@ function Stake() {
                     <div className="stake-index">
                       <p className="single-stake-subtitle">Current Index</p>
                       <p className="single-stake-subtitle-value">
-                        {currentIndex ? <>{trim(Number(currentIndex), 2)} TIME</> : <Skeleton width="150px" />}
+                        {currentIndex ? <>{trim(Number(currentIndex), 2)} META</> : <Skeleton width="150px" />}
                       </p>
                     </div>
                   </Grid>
@@ -181,7 +181,7 @@ function Stake() {
                       <p>Connect Wallet</p>
                     </div>
                   </div>
-                  <p className="desc-text">Connect your wallet to stake TIME tokens!</p>
+                  <p className="desc-text">Connect your wallet to stake META tokens!</p>
                 </div>
               ) : (
                 <>
@@ -229,7 +229,7 @@ function Stake() {
                               onChangeStake("stake");
                             }}
                           >
-                            <p>{txnButtonText(pendingTransactions, "staking", "Stake TIME")}</p>
+                            <p>{txnButtonText(pendingTransactions, "staking", "Stake META")}</p>
                           </div>
                         ) : (
                           <div
@@ -253,7 +253,7 @@ function Stake() {
                               onChangeStake("unstake");
                             }}
                           >
-                            <p>{txnButtonText(pendingTransactions, "unstaking", "Unstake TIME")}</p>
+                            <p>{txnButtonText(pendingTransactions, "unstaking", "Unstake META")}</p>
                           </div>
                         ) : (
                           <div
@@ -284,14 +284,14 @@ function Stake() {
                     <div className="data-row">
                       <p className="data-row-name">Your Balance</p>
                       <p className="data-row-value">
-                        {isAppLoading ? <Skeleton width="80px" /> : <>{trim(Number(timeBalance), 6)} TIME</>}
+                        {isAppLoading ? <Skeleton width="80px" /> : <>{trim(Number(timeBalance), 6)} META</>}
                       </p>
                     </div>
 
                     <div className="data-row">
                       <p className="data-row-name">Your Staked Balance</p>
                       <p className="data-row-value">
-                        {isAppLoading ? <Skeleton width="80px" /> : <>{trimmedMemoBalance} MEMO</>}
+                        {isAppLoading ? <Skeleton width="80px" /> : <>{trimmedMemoBalance} sMETA</>}
                       </p>
                     </div>
 
@@ -301,7 +301,7 @@ function Stake() {
                         {isAppLoading ? (
                           <Skeleton width="80px" />
                         ) : (
-                          <>{nextRewardValue == "NaN" ? 0 : nextRewardValue} MEMO</>
+                          <>{nextRewardValue == "NaN" ? 0 : nextRewardValue} sMETA</>
                         )}
                       </p>
                     </div>

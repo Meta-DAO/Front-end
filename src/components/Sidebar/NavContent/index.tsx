@@ -4,7 +4,7 @@ import Social from "../Social";
 import externalUrls from "./external-urls";
 import { ReactComponent as StakeIcon } from "../../../assets/icons/stake.svg";
 import { ReactComponent as BondIcon } from "../../../assets/icons/bond.svg";
-import { ReactComponent as WonderlandIcon } from "../../../assets/icons/wonderland-nav-header.svg";
+import { ReactComponent as MetaDAOIcon } from "../../../assets/icons/metadao-nav-header.svg";
 import { ReactComponent as DashboardIcon } from "../../../assets/icons/dashboard.svg";
 import { trim, shorten } from "../../../helpers";
 import { useAddress, useBonds } from "../../../hooks";
@@ -36,19 +36,19 @@ function NavContent() {
       <Box className="dapp-sidebar" display="flex" justifyContent="space-between" flexDirection="column">
         <div className="dapp-menu-top">
           <Box className="branding-header">
-            <Link href="https://wonderland.money" target="_blank">
+            <Link href={process.env.REACT_APP_URL} target="_blank">
               <SvgIcon
                 color="primary"
-                component={WonderlandIcon}
-                viewBox="0 0 130 60"
+                component={MetaDAOIcon}
+                viewBox="0 0 425 426"
                 //@ts-ignore
-                style={{ minWdth: "130px", minHeight: "56px", width: "130px" }}
+                style={{ minWidth: "130px", minHeight: "110px", width: "130px" }}
               />
             </Link>
 
             {address && (
               <div className="wallet-link">
-                <Link href={`https://cchain.explorer.avax.network/address/${address}`} target="_blank">
+                <Link href={`https://ftmscan.com/address/${address}`} target="_blank">
                   <p>{shorten(address)}</p>
                 </Link>
               </div>

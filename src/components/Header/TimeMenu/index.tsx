@@ -58,7 +58,7 @@ function TimeMenu() {
         id="ohm-menu-button-hover"
       >
         <div className="ohm-button">
-          <p>TIME</p>
+          <p>META</p>
         </div>
 
         <Popper id={id} open={open} anchorEl={anchorEl} transition>
@@ -88,17 +88,17 @@ function TimeMenu() {
                         size="large"
                         variant="contained"
                         color="secondary"
-                        onClick={addTokenToWallet("TIME", TIME_ADDRESS)}
+                        onClick={addTokenToWallet("META", TIME_ADDRESS)}
                       >
-                        <Typography className="buy-text">TIME</Typography>
+                        <Typography className="buy-text">META</Typography>
                       </Button>
                       <Button
                         variant="contained"
                         size="large"
                         color="secondary"
-                        onClick={addTokenToWallet("MEMO", MEMO_ADDRESS)}
+                        onClick={addTokenToWallet("sMETA", MEMO_ADDRESS)}
                       >
-                        <Typography className="buy-text">MEMO</Typography>
+                        <Typography className="buy-text">sMETA</Typography>
                       </Button>
                     </Box>
                   ) : null}

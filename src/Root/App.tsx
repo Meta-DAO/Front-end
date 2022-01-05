@@ -11,6 +11,7 @@ import { loadAppDetails } from "../store/slices/app-slice";
 import { loadAccountDetails, calculateUserBondDetails } from "../store/slices/account-slice";
 
 import { Stake, ChooseBond, Bond } from "../views";
+import Background from "../components/Background";
 import Sidebar from "../components/Sidebar";
 import TopBar from "../components/Header";
 import NavDrawer from "../components/Sidebar/NavDrawer";
@@ -156,7 +157,8 @@ function App() {
 
   return (
     <ThemeProvider theme={lightTheme}>
-      <div className="root-background" />
+      {/* <div className="root-background" /> */}
+      <Background />
       <div className={`app ${isSmallerScreen && "tablet"} ${isSmallScreen && "mobile"}`}>
         <TopBar drawe={!isSmallerScreen} handleDrawerToggle={handleDrawerToggle} />
         <nav className={classes.drawer}>

@@ -42,12 +42,12 @@ function toUrl(base: string): string {
 
 export function getTokenUrl(name: string) {
   if (name === "time") {
-    const path = require("../assets/tokens/TIME.svg").default;
+    const path = require("../assets/tokens/META.svg").default;
     return toUrl(path);
   }
 
   if (name === "memo") {
-    const path = require("../assets/tokens/MEMO.png").default;
+    const path = require("../assets/tokens/sMETA.png").default;
     return toUrl(path);
   }
 

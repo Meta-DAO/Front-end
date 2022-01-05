@@ -48,7 +48,7 @@ function Dashboard() {
             <Grid item lg={6} md={6} sm={6} xs={12} className="olympus-card">
               <Zoom in={true}>
                 <Paper className="ohm-card dashboard-card">
-                  <p className="card-title">TIME Price</p>
+                  <p className="card-title">META Price</p>
                   <p className="card-value">{isAppLoading ? <Skeleton width="100px" /> : `$${trim(marketPrice, 2)}`}</p>
                 </Paper>
               </Zoom>
@@ -137,7 +137,7 @@ function Dashboard() {
                 <Paper className="ohm-card dashboard-card">
                   <p className="card-title">Current Index</p>
                   <p className="card-value">
-                    {isAppLoading ? <Skeleton width="250px" /> : `${trim(Number(currentIndex), 2)} TIME`}
+                    {isAppLoading ? <Skeleton width="250px" /> : `${trim(Number(currentIndex), 2)} META`}
                   </p>
                 </Paper>
               </Zoom>
@@ -166,7 +166,7 @@ function Dashboard() {
             <Grid item lg={6} md={6} sm={6} xs={12}>
               <Zoom in={true}>
                 <Paper className="ohm-card dashboard-card">
-                  <p className="card-title">Backing per $TIME</p>
+                  <p className="card-title">Backing per $META</p>
                   <p className="card-value">
                     {isAppLoading ? (
                       <Skeleton width="250px" />
