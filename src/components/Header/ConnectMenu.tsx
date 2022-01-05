@@ -38,16 +38,16 @@ function ConnectMenu() {
     buttonText = "Wrong network";
     buttonStyle = { backgroundColor: "rgb(255, 67, 67)" };
     clickFunc = () => {
-      alert("Please connect your wallet to Avalanche network to use Wonderland!");
+      alert("Please connect your wallet to the Fantom network to use MetaDAO!");
     };
   }
 
   const open = Boolean(anchorEl);
 
   const getEtherscanUrl = (txnHash: string) => {
-    return chainID === Networks.RINKEBY
-      ? `https://rinkeby.etherscan.io/tx/${txnHash}`
-      : `https://cchain.explorer.avax.network/tx/${txnHash}`;
+    return chainID === Networks.FANTOM_TEST
+      ? `https://testnet.ftmscan.com//tx/${txnHash}`
+      : `https://ftmscan.com//tx/${txnHash}`;
   };
 
   useEffect(() => {

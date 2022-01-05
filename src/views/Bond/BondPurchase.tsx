@@ -57,7 +57,7 @@ function BondPurchase({ bond, slippage }: IBondPurchaseProps) {
   });
   const avaxBalance = useSelector<IReduxState, number>(state => {
     //@ts-ignore
-    return state.account[bond] && state.account[bond].avaxBalance;
+    return state.account[bond] && state.account[bond].FANTOMBalance;
   });
 
   const pendingTransactions = useSelector<IReduxState, IPendingTxn[]>(state => {

@@ -19,7 +19,6 @@ function Background() {
 
   function initElements() {
     world = document.getElementById("world") as HTMLElement;
-    console.log(world.style);
     viewport = document.getElementById("viewport") as HTMLElement;
   }
 
@@ -129,8 +128,6 @@ function Background() {
       }
       cloud.setAttribute("src", src);
       cloud.className = "cloudLayer";
-
-      console.log(cloud);
 
       let x = 256 - Math.random() * 512;
       let y = 256 - Math.random() * 512;

@@ -7,7 +7,7 @@ export function getPairImage(name: string): JSX.Element {
   const viewBox = "0 0 62 32";
   const style = { height: "30px", width: "62px" };
 
-  // if (name === BONDS.avax_time) {
+  // if (name === BONDS.FANTOM_time) {
   //   return (
   //     //@ts-ignore
   //     <Icon viewBox={viewBox} style={style}>

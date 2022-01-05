@@ -16,8 +16,8 @@ export const contractForReserve = (
   //   return new ethers.Contract(addresses.RESERVES.MIM_TIME, MimTimeReserveContract, provider);
   // }
 
-  // if (bond === BONDS.avax_time) {
-  //   return new ethers.Contract(addresses.RESERVES.AVAX_TIME, MimTimeReserveContract, provider);
+  // if (bond === BONDS.FANTOM_time) {
+  //   return new ethers.Contract(addresses.RESERVES.FANTOM_TIME, MimTimeReserveContract, provider);
   // }
 
   // if (bond === BONDS.wavax) {

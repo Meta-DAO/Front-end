@@ -130,7 +130,7 @@ export const calcBondDetails = createAsyncThunk(
     try {
       bondPrice = await bondContract.bondPriceInUSD();
 
-      // if (bond === BONDS.avax_time) {
+      // if (bond === BONDS.FANTOM_time) {
       //   const avaxPrice = getTokenPrice("AVAX");
       //   bondPrice = bondPrice * avaxPrice;
       // }
@@ -145,8 +145,8 @@ export const calcBondDetails = createAsyncThunk(
     //   bondQuote = await bondContract.payoutFor(valuation);
     //   bondQuote = bondQuote / Math.pow(10, 9);
     // } else {
-    //   if (bond === BONDS.avax_time) {
-    //     valuation = await bondCalcContract.valuation(addresses.RESERVES.AVAX_TIME, amountInWei);
+    //   if (bond === BONDS.FANTOM_time) {
+    //     valuation = await bondCalcContract.valuation(addresses.RESERVES.FANTOM_TIME, amountInWei);
     //     bondQuote = await bondContract.payoutFor(valuation);
     //     bondQuote = bondQuote / Math.pow(10, 9);
     //   } else {

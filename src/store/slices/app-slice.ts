@@ -49,6 +49,8 @@ export const loadAppDetails = createAsyncThunk(
     const timeContract = new ethers.Contract(addresses.TIME_ADDRESS, TimeTokenContract, provider);
 
     const marketPrice = await getMarketPrice(networkID, provider);
+    const s = await memoContract.circulatingSupply();
+    console.log("sMETA circulating supply: ", s.toString());
 
     const totalSupply = (await timeContract.totalSupply()) / Math.pow(10, 9);
     const circSupply = (await memoContract.circulatingSupply()) / Math.pow(10, 9);
@@ -82,15 +84,18 @@ export const loadAppDetails = createAsyncThunk(
     const currentIndex = await stakingContract.index();
     const nextRebase = epoch.endTime;
 
-    let circ = 0;
+    const circ = await memoContract.circulatingSupply();
+
     let stakingRebase = 0;
     let fiveDayRate = 0;
     let stakingAPY = 0;
     let treasuryRunway = 0;
     let runway = 0;
 
-    if (stakingReward.toString() != "0") {
-      circ = await memoContract.circulatingSupply();
+    console.log("staking reward: ", stakingReward.toString());
+
+    if (stakingReward.toString() != "0" && circ.toString() != "0") {
+      console.log("Circ: ", circ.toString());
       stakingRebase = stakingReward / circ;
       fiveDayRate = Math.pow(1 + stakingRebase, 5 * 3) - 1;
       stakingAPY = Math.pow(1 + stakingRebase, 365 * 3) - 1;
@@ -98,8 +103,6 @@ export const loadAppDetails = createAsyncThunk(
       treasuryRunway = rrfTreasuryBalance / circSupply;
       runway = Math.log(treasuryRunway) / Math.log(1 + stakingRebase) / 3;
     }
-
-    console.log("Staking apy: ", stakingAPY);
 
     return {
       currentIndex: Number(ethers.utils.formatUnits(currentIndex, "gwei")) / 4.5,

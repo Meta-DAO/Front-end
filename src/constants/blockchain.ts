@@ -7,6 +7,9 @@ export enum Networks {
   RINKEBY = 4,
   // AVAX = 43114,
   AVAX = 4002,
+  FANTOM = 250,
+  FANTOM_TEST = 4002,
 }
 
-export const DEFAULT_NETWORK = Networks.AVAX;
+const SELECTED_NETWORK = process.env.REACT_APP_NETWORK === "mainnet" ? Networks.FANTOM : Networks.FANTOM_TEST;
+export const DEFAULT_NETWORK = SELECTED_NETWORK;

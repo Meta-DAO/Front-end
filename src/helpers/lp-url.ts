@@ -8,7 +8,7 @@ export const lpURL = (bond: string, networkID: number): string => {
   //   return `https://www.traderjoexyz.com/#/pool/${addresses.MIM_ADDRESS}/${addresses.TIME_ADDRESS}`;
   // }
 
-  // if (bond === BONDS.avax_time) {
+  // if (bond === BONDS.FANTOM_time) {
   //   return `https://www.traderjoexyz.com/#/pool/AVAX/${addresses.TIME_ADDRESS}`;
   // }
 

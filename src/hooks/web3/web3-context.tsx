@@ -50,7 +50,7 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
   const [providerChainID, setProviderChainID] = useState(DEFAULT_NETWORK);
   const [address, setAddress] = useState("");
 
-  const [uri, setUri] = useState(chainID === Networks.AVAX ? getMainnetURI() : getTestnetURI());
+  const [uri, setUri] = useState(chainID === Networks.FANTOM ? getMainnetURI() : getTestnetURI());
   const [provider, setProvider] = useState<JsonRpcProvider>(new StaticJsonRpcProvider(uri));
 
   const [web3Modal] = useState<Web3Modal>(
@@ -61,8 +61,8 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
           package: WalletConnectProvider,
           options: {
             rpc: {
-              [Networks.AVAX]: getMainnetURI(),
-              [Networks.RINKEBY]: getTestnetURI(),
+              [Networks.FANTOM]: getMainnetURI(),
+              [Networks.FANTOM_TEST]: getTestnetURI(),
             },
           },
         },
@@ -104,9 +104,9 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
 
     if (chainID !== network) {
       console.warn("You are switching networks: ", network);
-      if (network === Networks.AVAX || network === Networks.RINKEBY) {
+      if (network === Networks.FANTOM || network === Networks.FANTOM_TEST) {
         setChainID(network);
-        network === Networks.RINKEBY ? setUri(getMainnetURI()) : setUri(getTestnetURI());
+        network === Networks.FANTOM_TEST ? setUri(getMainnetURI()) : setUri(getTestnetURI());
       }
     }
   };
@@ -125,7 +125,7 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
 
     setProviderChainID(chainId);
 
-    if (chainId === Networks.AVAX || chainId === Networks.RINKEBY) {
+    if (chainId === Networks.FANTOM || chainId === Networks.FANTOM_TEST) {
       setProvider(connectedProvider);
     }
 
@@ -136,7 +136,7 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
 
   const checkWrongNetwork = (): boolean => {
     if (providerChainID !== DEFAULT_NETWORK) {
-      alert("Please connect your wallet to Avalanche network to use Wonderland!");
+      alert("Please connect your wallet to the Fantom network to use MetaDAO!");
       return true;
     }
 
