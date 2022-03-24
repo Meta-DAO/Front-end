@@ -67,14 +67,10 @@ function TimeMenu() {
               <Fade {...TransitionProps} timeout={200}>
                 <Paper className="ohm-menu" elevation={1}>
                   <Box component="div" className="buy-tokens">
-                    <Link
-                      href={`https://www.traderjoexyz.com/#/trade?inputCurrency=&outputCurrency=${TIME_ADDRESS}`}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
+                    <Link href={`https://spookyswap.finance/swap`} target="_blank" rel="noreferrer">
                       <Button size="large" variant="contained" color="secondary" fullWidth>
                         <Typography className="buy-text" align="left">
-                          Buy on Trader Joe <SvgIcon component={ArrowUpIcon} htmlColor="#A3A3A3" />
+                          Buy on Spooky Swap <SvgIcon component={ArrowUpIcon} htmlColor="#A3A3A3" />
                         </Typography>
                       </Button>
                     </Link>

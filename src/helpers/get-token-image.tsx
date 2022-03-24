@@ -41,13 +41,13 @@ function toUrl(base: string): string {
 }
 
 export function getTokenUrl(name: string) {
-  if (name === "time") {
+  if (name === "meta") {
     const path = require("../assets/tokens/META.svg").default;
     return toUrl(path);
   }
 
-  if (name === "memo") {
-    const path = require("../assets/tokens/sMETA.png").default;
+  if (name === "smeta") {
+    const path = require("../assets/tokens/sMETA.svg").default;
     return toUrl(path);
   }
 

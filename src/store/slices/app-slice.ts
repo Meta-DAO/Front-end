@@ -43,14 +43,13 @@ export const loadAppDetails = createAsyncThunk(
     const addresses = getAddresses(networkID);
     const stakingContract = new ethers.Contract(addresses.STAKING_ADDRESS, StakingContract, provider);
     const currentBlock = await provider.getBlockNumber();
+
     const currentBlockTime = (await provider.getBlock(currentBlock)).timestamp;
     const memoContract = new ethers.Contract(addresses.MEMO_ADDRESS, MemoTokenContract, provider);
     // const bondCalculator = new ethers.Contract(addresses.TIME_BONDING_CALC_ADDRESS, BondingCalcContract, provider);
     const timeContract = new ethers.Contract(addresses.TIME_ADDRESS, TimeTokenContract, provider);
 
     const marketPrice = await getMarketPrice(networkID, provider);
-    const s = await memoContract.circulatingSupply();
-    console.log("sMETA circulating supply: ", s.toString());
 
     const totalSupply = (await timeContract.totalSupply()) / Math.pow(10, 9);
     const circSupply = (await memoContract.circulatingSupply()) / Math.pow(10, 9);
@@ -83,6 +82,7 @@ export const loadAppDetails = createAsyncThunk(
     const stakingReward = epoch.distribute;
     const currentIndex = await stakingContract.index();
     const nextRebase = epoch.endTime;
+    console.log("Next Rebase: ", nextRebase);
 
     const circ = await memoContract.circulatingSupply();
 
@@ -95,7 +95,6 @@ export const loadAppDetails = createAsyncThunk(
     console.log("staking reward: ", stakingReward.toString());
 
     if (stakingReward.toString() != "0" && circ.toString() != "0") {
-      console.log("Circ: ", circ.toString());
       stakingRebase = stakingReward / circ;
       fiveDayRate = Math.pow(1 + stakingRebase, 5 * 3) - 1;
       stakingAPY = Math.pow(1 + stakingRebase, 365 * 3) - 1;

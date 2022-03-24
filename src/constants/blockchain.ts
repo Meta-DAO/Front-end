@@ -1,5 +1,5 @@
 export const EPOCH_INTERVAL = 28800;
-export const TOKEN_DECIMALS = 9;
+export const TOKEN_DECIMALS = 18;
 
 export enum Networks {
   UNKNOW = 0,

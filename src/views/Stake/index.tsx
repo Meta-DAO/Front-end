@@ -120,9 +120,7 @@ function Stake() {
           <Grid container direction="column" spacing={2}>
             <Grid item>
               <div className="card-header">
-                <p className="single-stake-title">
-                  META Staking ({String.fromCodePoint(0x1f3a9)}, {String.fromCodePoint(0x1f3a9)})
-                </p>
+                <p className="single-stake-title">META Staking (⚡,⚡)</p>
                 <RebaseTimer />
               </div>
             </Grid>

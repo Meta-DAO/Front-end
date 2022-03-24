@@ -18,15 +18,16 @@ function RebaseTimer() {
   const timeUntilRebase = useMemo(() => {
     if (currentBlockTime && nextRebase) {
       const seconds = secondsUntilBlock(currentBlockTime, nextRebase);
-
       return prettifySeconds(seconds);
     }
   }, [currentBlockTime, nextRebase]);
 
+  console.log("Time until: ", timeUntilRebase);
+
   return (
     <Box className="rebase-timer">
       <p>
-        {currentBlockTime && timeUntilRebase ? (
+        {currentBlockTime ? (
           timeUntilRebase ? (
             <>
               <strong>{timeUntilRebase}</strong> to Next Rebase
