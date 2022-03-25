@@ -49,12 +49,12 @@ export const loadAppDetails = createAsyncThunk(
         // const bondCalculator = new ethers.Contract(addresses.TIME_BONDING_CALC_ADDRESS, BondingCalcContract, provider);
         const timeContract = new ethers.Contract(addresses.TIME_ADDRESS, TimeTokenContract, provider);
 
-        const marketPrice = await getMarketPrice(networkID, provider);
+        const marketPrice = ((await getMarketPrice(networkID, provider)) / Math.pow(10, 9)) * mimPrice;
 
         const totalSupply = (await timeContract.totalSupply()) / Math.pow(10, 9);
         const circSupply = (await memoContract.circulatingSupply()) / Math.pow(10, 9);
-        const stakingTVL = circSupply * (marketPrice / Math.pow(10, 9)) * mimPrice;
-        const marketCap = totalSupply * (marketPrice / Math.pow(10, 9)) * mimPrice;
+        const stakingTVL = circSupply * marketPrice;
+        const marketCap = totalSupply * marketPrice;
 
         //MIM
         let token = contractForReserve(BONDS.mim, networkID, provider);
@@ -92,8 +92,6 @@ export const loadAppDetails = createAsyncThunk(
         let treasuryRunway = 0;
         let runway = 0;
 
-        console.log("staking reward: ", stakingReward.toString());
-
         if (stakingReward.toString() != "0" && circ.toString() != "0") {
             stakingRebase = stakingReward / circ;
             fiveDayRate = Math.pow(1 + stakingRebase, 5 * 3) - 1;
@@ -102,6 +100,8 @@ export const loadAppDetails = createAsyncThunk(
             treasuryRunway = rrfTreasuryBalance / circSupply;
             runway = Math.log(treasuryRunway) / Math.log(1 + stakingRebase) / 3;
         }
+
+        console.log("staking apy: ", stakingAPY);
 
         return {
             currentIndex: Number(ethers.utils.formatUnits(currentIndex, "gwei")) / 4.5,
