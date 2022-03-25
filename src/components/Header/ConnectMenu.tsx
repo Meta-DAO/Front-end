@@ -8,7 +8,7 @@ import { IPendingTxn } from "../../store/slices/pending-txns-slice";
 import { ClickAwayListener } from "@material-ui/core";
 
 function ConnectMenu() {
-  const { connect, disconnect, connected, web3, chainID, providerChainID } = useWeb3Context();
+  const { connect, disconnect, connected, web3, chainID, providerChainID, checkWrongNetwork } = useWeb3Context();
   const [anchorEl, setAnchorEl] = useState(null);
   const [isConnected, setConnected] = useState(connected);
 
@@ -38,7 +38,8 @@ function ConnectMenu() {
     buttonText = "Wrong network";
     buttonStyle = { backgroundColor: "rgb(255, 67, 67)" };
     clickFunc = () => {
-      alert("Please connect your wallet to the Fantom network to use MetaDAO!");
+      checkWrongNetwork();
+      // alert("Please connect your wallet to the Fantom network to use MetaDAO!");
     };
   }
 

@@ -7,40 +7,45 @@ import { useMemo } from "react";
 import { IReduxState } from "../../store/slices/state.interface";
 
 function RebaseTimer() {
-  const currentBlockTime = useSelector<IReduxState, number>(state => {
-    return state.app.currentBlockTime;
-  });
+    const currentBlockTime = useSelector<IReduxState, number>((state) => {
+        return state.app.currentBlockTime;
+    });
 
-  const nextRebase = useSelector<IReduxState, number>(state => {
-    return state.app.nextRebase;
-  });
+    const nextRebase = useSelector<IReduxState, number>((state) => {
+        return state.app.nextRebase;
+    });
 
-  const timeUntilRebase = useMemo(() => {
-    if (currentBlockTime && nextRebase) {
-      const seconds = secondsUntilBlock(currentBlockTime, nextRebase);
-      return prettifySeconds(seconds);
-    }
-  }, [currentBlockTime, nextRebase]);
+    const timeUntilRebase = useMemo(() => {
+        if (currentBlockTime && nextRebase) {
+            const seconds = secondsUntilBlock(currentBlockTime, nextRebase);
+            console.log("Block info: ", {
+                currentBlockTime,
+                nextRebase,
+                seconds,
+            });
+            return prettifySeconds(seconds);
+        }
+    }, [currentBlockTime, nextRebase]);
 
-  console.log("Time until: ", timeUntilRebase);
+    console.log("Time until: ", timeUntilRebase);
 
-  return (
-    <Box className="rebase-timer">
-      <p>
-        {currentBlockTime ? (
-          timeUntilRebase ? (
-            <>
-              <strong>{timeUntilRebase}</strong> to Next Rebase
-            </>
-          ) : (
-            <strong>Rebasing</strong>
-          )
-        ) : (
-          <Skeleton width="200px" />
-        )}
-      </p>
-    </Box>
-  );
+    return (
+        <Box className="rebase-timer">
+            <p>
+                {currentBlockTime ? (
+                    timeUntilRebase ? (
+                        <>
+                            <strong>{timeUntilRebase}</strong> to Next Rebase
+                        </>
+                    ) : (
+                        <strong>Rebasing</strong>
+                    )
+                ) : (
+                    <Skeleton width="200px" />
+                )}
+            </p>
+        </Box>
+    );
 }
 
 export default RebaseTimer;
