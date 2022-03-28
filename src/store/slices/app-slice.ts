@@ -81,8 +81,9 @@ export const loadAppDetails = createAsyncThunk(
         const epoch = await stakingContract.epoch();
         const stakingReward = epoch.distribute;
         const currentIndex = await stakingContract.index();
+        const stakingBalance = (await stakingContract.contractBalance()).toString();
+        console.log({ stakingBalance });
         const nextRebase = epoch.endTime;
-        console.log("Next Rebase: ", nextRebase);
 
         const circ = await memoContract.circulatingSupply();
 
@@ -93,6 +94,7 @@ export const loadAppDetails = createAsyncThunk(
         let runway = 0;
 
         if (stakingReward.toString() != "0" && circ.toString() != "0") {
+            console.log(`${stakingReward} / ${circ} = ${stakingReward / circ}`);
             stakingRebase = stakingReward / circ;
             fiveDayRate = Math.pow(1 + stakingRebase, 5 * 3) - 1;
             stakingAPY = Math.pow(1 + stakingRebase, 365 * 3) - 1;
@@ -101,9 +103,7 @@ export const loadAppDetails = createAsyncThunk(
             runway = Math.log(treasuryRunway) / Math.log(1 + stakingRebase) / 3;
         }
 
-        console.log("staking apy: ", stakingAPY);
-
-        return {
+        const result = {
             currentIndex: Number(ethers.utils.formatUnits(currentIndex, "gwei")) / 4.5,
             totalSupply,
             marketCap,
@@ -120,6 +120,8 @@ export const loadAppDetails = createAsyncThunk(
             rfv,
             runway,
         };
+
+        return result;
     },
 );
 
