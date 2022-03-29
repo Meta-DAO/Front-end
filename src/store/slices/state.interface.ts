@@ -4,8 +4,8 @@ import { IApp } from "./app-slice";
 import { IBond } from "./bond-slice";
 
 export interface IReduxState {
-  pendingTransactions: IPendingTxn[];
-  account: IAccount;
-  app: IApp;
-  bonding: IBond;
+    pendingTransactions: IPendingTxn[];
+    account: IAccount;
+    app: IApp;
+    bonding: IBond;
 }

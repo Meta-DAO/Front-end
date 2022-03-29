@@ -1,3 +1,3 @@
 export const getTestnetURI = (): string => {
-  return "https://rpc.testnet.fantom.network/";
+    return "https://rpc.testnet.fantom.network/";
 };

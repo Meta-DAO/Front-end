@@ -1,75 +1,75 @@
 import { Networks, DEFAULT_NETWORK } from "../constants/blockchain";
 
 const switchRequest = () => {
-  return window.ethereum.request({
-    method: "wallet_switchEthereumChain",
-    params: [{ chainId: `0x${DEFAULT_NETWORK.toString(16)}` }],
-  });
+    return window.ethereum.request({
+        method: "wallet_switchEthereumChain",
+        params: [{ chainId: `0x${DEFAULT_NETWORK.toString(16)}` }],
+    });
 };
 
 const currentNetworkParams = () => {
-  switch (DEFAULT_NETWORK) {
-    case Networks.FANTOM:
-      return {
-        chainId: `0x${Networks.FANTOM.toString(16)}`,
-        chainName: "Fantom Opera",
-        rpcUrls: ["https://rpc.ftm.tools/"],
-        blockExplorerUrls: ["https://ftmscan.com/"],
-        nativeCurrency: {
-          name: "Fantom",
-          symbol: "FTM",
-          decimals: 18,
-        },
-      };
-    case Networks.FANTOM_TEST:
-      return {
-        chainId: `0x${Networks.FANTOM_TEST.toString(16)}`,
-        chainName: "Fantom Testnet",
-        rpcUrls: ["https://rpc.testnet.fantom.network"],
-        blockExplorerUrls: ["https://testnet.ftmscan.com"],
-        nativeCurrency: {
-          name: "Fantom",
-          symbol: "FTM",
-          decimals: 18,
-        },
-      };
-    default:
-      return {
-        chainId: `0x${Networks.FANTOM.toString(16)}`,
-        chainName: "Fantom Mainnet",
-        rpcUrls: ["https://rpc.ftm.tools"],
-        blockExplorerUrls: ["https://ftmscan.com"],
-        nativeCurrency: {
-          name: "Fantom",
-          symbol: "FTM",
-          decimals: 18,
-        },
-      };
-  }
+    switch (DEFAULT_NETWORK) {
+        case Networks.FANTOM:
+            return {
+                chainId: `0x${Networks.FANTOM.toString(16)}`,
+                chainName: "Fantom Opera",
+                rpcUrls: ["https://rpc.ftm.tools/"],
+                blockExplorerUrls: ["https://ftmscan.com/"],
+                nativeCurrency: {
+                    name: "Fantom",
+                    symbol: "FTM",
+                    decimals: 18,
+                },
+            };
+        case Networks.FANTOM_TEST:
+            return {
+                chainId: `0x${Networks.FANTOM_TEST.toString(16)}`,
+                chainName: "Fantom Testnet",
+                rpcUrls: ["https://rpc.testnet.fantom.network"],
+                blockExplorerUrls: ["https://testnet.ftmscan.com"],
+                nativeCurrency: {
+                    name: "Fantom",
+                    symbol: "FTM",
+                    decimals: 18,
+                },
+            };
+        default:
+            return {
+                chainId: `0x${Networks.FANTOM.toString(16)}`,
+                chainName: "Fantom Mainnet",
+                rpcUrls: ["https://rpc.ftm.tools"],
+                blockExplorerUrls: ["https://ftmscan.com"],
+                nativeCurrency: {
+                    name: "Fantom",
+                    symbol: "FTM",
+                    decimals: 18,
+                },
+            };
+    }
 };
 
 const addChainRequest = () => {
-  const networkParams = currentNetworkParams();
-  return window.ethereum.request({
-    method: "wallet_addEthereumChain",
-    params: [networkParams],
-  });
+    const networkParams = currentNetworkParams();
+    return window.ethereum.request({
+        method: "wallet_addEthereumChain",
+        params: [networkParams],
+    });
 };
 
 export const switchNetwork = async () => {
-  if (window.ethereum) {
-    try {
-      await switchRequest();
-    } catch (error: any) {
-      if (error.code === 4902) {
+    if (window.ethereum) {
         try {
-          await addChainRequest();
-          await switchRequest();
-        } catch (addError) {
-          console.log(error);
+            await switchRequest();
+        } catch (error: any) {
+            if (error.code === 4902) {
+                try {
+                    await addChainRequest();
+                    await switchRequest();
+                } catch (addError) {
+                    console.log(error);
+                }
+            }
+            console.log(error);
         }
-      }
-      console.log(error);
     }
-  }
 };

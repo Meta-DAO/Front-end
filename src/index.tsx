@@ -5,10 +5,10 @@ import { Provider } from "react-redux";
 import { Web3ContextProvider } from "./hooks";
 
 ReactDOM.render(
-  <Web3ContextProvider>
-    <Provider store={store}>
-      <Root />
-    </Provider>
-  </Web3ContextProvider>,
-  document.getElementById("root"),
+    <Web3ContextProvider>
+        <Provider store={store}>
+            <Root />
+        </Provider>
+    </Web3ContextProvider>,
+    document.getElementById("root"),
 );
