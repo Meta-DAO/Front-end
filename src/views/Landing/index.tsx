@@ -26,7 +26,7 @@ function Landing() {
                     </div>
                     <div className="landing-main-help-text-wrap">
                         <p>Financial tools to grow your wealth - stake and earn</p>
-                        <p>compounding interest on the Avalanche Network</p>
+                        <p>compounding interest on the Fantom Network</p>
                     </div>
                     <div className="landing-main-btns-wrap">
                         <Link href={`https://app.${process.env.REACT_APP_URL}`} target="_blank" rel="noreferrer">
