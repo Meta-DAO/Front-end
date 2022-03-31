@@ -21,8 +21,6 @@ function Landing() {
                 <div className="landing-main">
                     <div className="landing-main-title-wrap">
                         <img src={Logo} />
-                        {/* <p>The Decentralized</p>
-                        <p>Wonderland</p> */}
                     </div>
                     <div className="landing-main-help-text-wrap">
                         <p>Financial tools to grow your wealth - stake and earn</p>
