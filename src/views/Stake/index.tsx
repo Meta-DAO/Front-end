@@ -46,6 +46,7 @@ function Stake() {
     const timeBalance = useSelector<IReduxState, string>((state) => {
         return state.account.balances && state.account.balances.time;
     });
+    console.log("Time balance: ", timeBalance);
     const memoBalance = useSelector<IReduxState, string>((state) => {
         return state.account.balances && state.account.balances.memo;
     });
@@ -109,7 +110,7 @@ function Stake() {
         setView(newView);
     };
 
-    const trimmedMemoBalance = trim(Number(memoBalance), 6);
+    const trimmedMemoBalance = memoBalance ? trim(Number(memoBalance), 6) : 0;
     const trimmedStakingAPY = trim(stakingAPY * 100, 1);
     const stakingRebasePercentage = trim(stakingRebase * 100, 4);
     const nextRewardValue = trim((Number(stakingRebasePercentage) / 100) * Number(trimmedMemoBalance), 6);
@@ -324,7 +325,7 @@ function Stake() {
                                                 {isAppLoading ? (
                                                     <Skeleton width="80px" />
                                                 ) : (
-                                                    <>{trim(Number(timeBalance), 6)} META</>
+                                                    <>{timeBalance ? trim(Number(timeBalance), 6) : "0"} META</>
                                                 )}
                                             </p>
                                         </div>
