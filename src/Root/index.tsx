@@ -8,6 +8,7 @@ import Loading from "../components/Loader";
 function Root() {
     const isApp = (): boolean => {
         return window.location.host.includes("app");
+        // return true;
     };
 
     const [loading, setLoading] = useState(true);
@@ -24,8 +25,11 @@ function Root() {
         </HashRouter>
     );
 
-    // return isApp() ? app() : <Landing />;
-    return app();
+    if (process.env.REACT_APP_SHOW_LANDING == "true") {
+        return isApp() ? app() : <Landing />;
+    } else {
+        return app();
+    }
 }
 
 export default Root;
