@@ -36,7 +36,7 @@ function NavContent() {
             <Box className="dapp-sidebar" display="flex" justifyContent="space-between" flexDirection="column">
                 <div className="dapp-menu-top">
                     <Box className="branding-header">
-                        <Link href={process.env.REACT_APP_URL} target="_blank">
+                        <Link href={`http://${process.env.REACT_APP_URL}`} target="_blank">
                             <SvgIcon
                                 color="primary"
                                 component={MetaDAOIcon}
